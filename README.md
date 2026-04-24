@@ -4,5 +4,5 @@
 
 部署方式：
 
-- 推送到 `main` 后，GitHub Actions 会自动部署到 GitHub Pages
-- 预期公开地址：`https://catalpachan.github.io/gree_toilet/`
+- GitHub Pages 发布源设置为 `main` 分支根目录 `/`
+- 公开地址：`https://catalpachan.github.io/gree_toilet/`
