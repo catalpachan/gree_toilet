@@ -1,0 +1,2497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科技楼智慧洁卫运营管理系统 | Landing Page</title>
+  <meta
+    name="description"
+    content="科技楼智慧洁卫运营管理系统落地页示意，聚焦实时感知、智能解析、编辑器升级与楼宇级数字运营。"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #010101;
+      --bg-elevated: rgba(10, 11, 12, 0.82);
+      --bg-strong: rgba(4, 5, 5, 0.94);
+      --surface: rgba(11, 12, 13, 0.72);
+      --surface-soft: rgba(12, 13, 14, 0.52);
+      --surface-strong: rgba(8, 9, 10, 0.9);
+      --text: #f4f7f5;
+      --muted: rgba(244, 247, 245, 0.72);
+      --soft: rgba(244, 247, 245, 0.44);
+      --line: rgba(139, 255, 204, 0.1);
+      --line-strong: rgba(139, 255, 204, 0.2);
+      --green: #43f5a2;
+      --green-2: #7cffc4;
+      --green-3: #0eb27b;
+      --green-4: #10231b;
+      --warning: #dfffe5;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+      --shadow-glow: 0 0 0 1px rgba(124, 255, 196, 0.05), 0 24px 72px rgba(0, 0, 0, 0.54);
+      --shadow-soft: 0 20px 48px rgba(0, 0, 0, 0.38);
+      --container: min(1220px, calc(100% - 48px));
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --glow-strength: 1;
+      --panel-padding: clamp(1.25rem, 2.2vw, 1.9rem);
+      --section-padding: clamp(5rem, 8vw, 7rem);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(67, 245, 162, 0.05), transparent 24%),
+        linear-gradient(180deg, #000000 0%, #030303 36%, #010101 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 95px,
+          rgba(124, 255, 196, 0.016) 95px,
+          rgba(124, 255, 196, 0.016) 96px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0,
+          transparent 95px,
+          rgba(124, 255, 196, 0.012) 95px,
+          rgba(124, 255, 196, 0.012) 96px
+        );
+      opacity: 0.42;
+      mask-image: linear-gradient(180deg, transparent 0%, black 12%, black 88%, transparent 100%);
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(124, 255, 196, 0.04), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(67, 245, 162, 0.03), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(13, 191, 132, 0.04), transparent 36%);
+      mix-blend-mode: screen;
+      opacity: calc(0.42 * var(--glow-strength));
+    }
+
+    body[data-glow="low"] {
+      --glow-strength: 0.65;
+    }
+
+    body[data-glow="high"] {
+      --glow-strength: 1.35;
+    }
+
+    body[data-density="compact"] {
+      --section-padding: clamp(4rem, 7vw, 5.5rem);
+    }
+
+    body[data-motion="off"] *,
+    body[data-motion="off"] *::before,
+    body[data-motion="off"] *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1240px, calc(100% - 32px));
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1rem 0.85rem 1.25rem;
+      background: rgba(6, 6, 7, 0.72);
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(20px) saturate(135%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        linear-gradient(145deg, rgba(124, 255, 196, 0.18), rgba(67, 245, 162, 0.04)),
+        rgba(8, 9, 10, 0.92);
+      border: 1px solid rgba(143, 255, 207, 0.2);
+      box-shadow: 0 0 0 1px rgba(67, 245, 162, 0.05), 0 0 18px rgba(67, 245, 162, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 9px;
+      border: 1px solid rgba(124, 255, 196, 0.18);
+    }
+
+    .brand-mark::after {
+      inset: 13px;
+      background: linear-gradient(135deg, rgba(124, 255, 196, 0.72), rgba(124, 255, 196, 0));
+      border: 0;
+      clip-path: polygon(0 0, 100% 0, 42% 100%, 0 100%);
+      opacity: 0.92;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-sub {
+      font-size: 0.74rem;
+      color: var(--soft);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top: 0.18rem;
+      white-space: nowrap;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem;
+      border-radius: var(--radius-pill);
+      background: rgba(9, 10, 10, 0.46);
+      border: 1px solid rgba(140, 255, 205, 0.08);
+    }
+
+    .topbar-nav a {
+      padding: 0.68rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: background 220ms var(--ease), color 220ms var(--ease), transform 220ms var(--ease);
+    }
+
+    .topbar-nav a:hover,
+    .topbar-nav a:focus-visible,
+    .topbar-nav a.is-active {
+      background: rgba(124, 255, 196, 0.08);
+      color: var(--text);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.85rem 1.35rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition:
+        transform 220ms var(--ease),
+        border-color 220ms var(--ease),
+        box-shadow 220ms var(--ease),
+        background 220ms var(--ease),
+        color 220ms var(--ease);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .button-primary {
+      color: #032115;
+      background:
+        linear-gradient(135deg, #8dffd1 0%, #43f5a2 55%, #0eb27b 100%);
+      box-shadow: 0 14px 34px rgba(30, 163, 108, 0.34);
+    }
+
+    .button-primary:hover,
+    .button-primary:focus-visible {
+      box-shadow: 0 18px 40px rgba(30, 163, 108, 0.4);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      border-color: rgba(140, 255, 205, 0.14);
+      background: rgba(8, 8, 9, 0.72);
+      backdrop-filter: blur(14px);
+    }
+
+    .button-secondary:hover,
+    .button-secondary:focus-visible {
+      background: rgba(12, 12, 13, 0.9);
+      border-color: rgba(140, 255, 205, 0.22);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.26);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--section-padding) + 2rem) 0 var(--section-padding);
+      overflow: clip;
+      isolation: isolate;
+    }
+
+    .panel::before,
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .panel::after {
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(124, 255, 196, 0.035), transparent 22%),
+        radial-gradient(circle at 80% 76%, rgba(67, 245, 162, 0.045), transparent 28%);
+      opacity: calc(0.52 * var(--glow-strength));
+      filter: blur(12px);
+    }
+
+    .panel-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .panel-bg span {
+      position: absolute;
+      display: block;
+      border-radius: 999px;
+      filter: blur(0);
+      opacity: 0.72;
+      animation: drift 14s linear infinite;
+    }
+
+    .panel-shell {
+      width: var(--container);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      container-type: inline-size;
+    }
+
+    .panel--reverse .panel-shell {
+      grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
+    }
+
+    .panel--reverse .panel-content {
+      order: 2;
+    }
+
+    .panel--reverse .panel-visual {
+      order: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.48rem 0.84rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(140, 255, 205, 0.1);
+      background: rgba(8, 9, 10, 0.64);
+      color: #cffff0;
+      font-size: 0.77rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 1.3rem;
+      backdrop-filter: blur(14px);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.48rem;
+      height: 0.48rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-2), var(--green));
+      box-shadow: 0 0 0 5px rgba(67, 245, 162, 0.12), 0 0 18px rgba(67, 245, 162, 0.34);
+    }
+
+    .panel-content h1,
+    .panel-content h2,
+    .panel-content p,
+    .stat-copy strong,
+    .quote-role,
+    .quote-title,
+    .metric-card strong {
+      text-wrap: pretty;
+    }
+
+    .panel-content h1,
+    .panel-content h2 {
+      margin: 0;
+      font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+    }
+
+    .panel-content h1 {
+      font-size: clamp(3.3rem, 7vw, 7rem);
+      max-width: 11ch;
+    }
+
+    .panel-content h2 {
+      font-size: clamp(2.7rem, 5vw, 5rem);
+      max-width: 10ch;
+    }
+
+    .panel-content p {
+      max-width: 58ch;
+      margin: 1.35rem 0 0;
+      font-size: clamp(1rem, 1.45vw, 1.18rem);
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    .content-note {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.3rem;
+      margin-top: 1.7rem;
+      color: var(--soft);
+      font-size: 0.95rem;
+    }
+
+    .content-note span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .content-note span::before {
+      content: "";
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 50%;
+      background: rgba(124, 255, 196, 0.88);
+      box-shadow: 0 0 0 4px rgba(124, 255, 196, 0.1);
+    }
+
+    .hero-copy {
+      max-width: 62ch;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.9rem;
+    }
+
+    .hero-meta .meta-card,
+    .floating-card,
+    .feature-card,
+    .metric-card,
+    .quote-card,
+    .cta-card,
+    .glass-panel {
+      background: linear-gradient(180deg, rgba(11, 12, 13, 0.88), rgba(4, 5, 6, 0.78));
+      border: 1px solid rgba(140, 255, 205, 0.09);
+      box-shadow: var(--shadow-glow);
+      backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .meta-card {
+      padding: 1.1rem 1.05rem;
+      border-radius: 20px;
+      min-height: 124px;
+    }
+
+    .meta-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 0.75rem;
+    }
+
+    .meta-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .meta-desc {
+      margin-top: 0.55rem;
+      color: var(--soft);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .panel-visual {
+      position: relative;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glass-panel {
+      position: relative;
+      width: min(100%, 560px);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid rgba(140, 255, 205, 0.08);
+      background: linear-gradient(180deg, rgba(14, 15, 16, 0.78), rgba(8, 8, 9, 0.32));
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .panel-dots {
+      display: inline-flex;
+      gap: 0.42rem;
+    }
+
+    .panel-dots span {
+      width: 0.52rem;
+      height: 0.52rem;
+      border-radius: 50%;
+      background: rgba(216, 255, 236, 0.22);
+    }
+
+    .panel-heading {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .chip-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 0.42rem 0.68rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      background: rgba(10, 10, 11, 0.76);
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-console {
+      padding: 0;
+      transform: perspective(1600px) rotateY(-10deg) rotateX(6deg);
+      transform-style: preserve-3d;
+      animation: heroTilt 7.8s ease-in-out infinite;
+    }
+
+    .hero-console::before {
+      content: "";
+      position: absolute;
+      inset: -30px 20px auto;
+      height: 120px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.1), transparent 70%);
+      filter: blur(26px);
+      z-index: -1;
+    }
+
+    .console-body {
+      padding: 1.2rem;
+      display: grid;
+      gap: 1rem;
+      background:
+        linear-gradient(180deg, rgba(9, 10, 10, 0.82), rgba(4, 5, 5, 0.98));
+    }
+
+    .console-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+    }
+
+    .zone-map {
+      padding: 1rem;
+      min-height: 300px;
+      border-radius: 24px;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      background:
+        linear-gradient(180deg, rgba(11, 12, 13, 0.86), rgba(5, 6, 7, 0.94));
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+      flex: 1;
+    }
+
+    .zone-cell {
+      min-height: 80px;
+      padding: 0.82rem;
+      border-radius: 18px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      background:
+        linear-gradient(180deg, rgba(12, 13, 14, 0.84), rgba(6, 7, 8, 0.86));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zone-cell::before {
+      content: "";
+      position: absolute;
+      inset: auto -18px -30px auto;
+      width: 94px;
+      height: 94px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.08), transparent 70%);
+    }
+
+    .zone-label {
+      font-size: 0.76rem;
+      color: var(--soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .zone-value {
+      font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-top: 0.55rem;
+    }
+
+    .zone-value small {
+      font-size: 0.76rem;
+      color: var(--soft);
+      margin-left: 0.2rem;
+    }
+
+    .activity-rail {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .rail-card {
+      padding: 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      background: linear-gradient(180deg, rgba(12, 13, 14, 0.88), rgba(5, 6, 7, 0.9));
+      min-height: 138px;
+    }
+
+    .rail-card strong,
+    .flow-pill strong,
+    .timeline-step strong,
+    .metric-main {
+      font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+    }
+
+    .rail-card strong {
+      display: block;
+      font-size: 1.08rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .mini-bars {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .mini-bars span {
+      display: block;
+      height: 0.62rem;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, rgba(67, 245, 162, 0.9), rgba(124, 255, 196, 0.1));
+      opacity: 0.88;
+    }
+
+    .mini-bars span:nth-child(2) {
+      width: 82%;
+    }
+
+    .mini-bars span:nth-child(3) {
+      width: 64%;
+    }
+
+    .mini-bars span:nth-child(4) {
+      width: 92%;
+    }
+
+    .floating-card {
+      position: absolute;
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      min-width: 160px;
+      animation: float 6.8s ease-in-out infinite;
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .floating-card p {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--soft);
+      line-height: 1.65;
+    }
+
+    .floating-card--top {
+      top: 48px;
+      right: -6px;
+    }
+
+    .floating-card--bottom {
+      left: -18px;
+      bottom: 42px;
+      animation-delay: -2.3s;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+
+    .feature-card {
+      padding: 1.25rem 1.2rem;
+      border-radius: 24px;
+    }
+
+    .feature-card strong {
+      display: block;
+      font-size: 1.08rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--soft);
+    }
+
+    .feature-visual,
+    .parse-visual,
+    .editor-visual,
+    .data-visual,
+    .recommend-visual {
+      width: min(100%, 580px);
+    }
+
+    .rack-panel {
+      padding: 1.1rem;
+      display: grid;
+      gap: 1rem;
+      background:
+        radial-gradient(circle at top right, rgba(124, 255, 196, 0.07), transparent 32%),
+        linear-gradient(180deg, rgba(10, 10, 11, 0.92), rgba(4, 5, 5, 0.98));
+    }
+
+    .rack-columns {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      min-height: 340px;
+    }
+
+    .rack-column {
+      border-radius: 22px;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      background:
+        linear-gradient(180deg, rgba(12, 13, 14, 0.82), rgba(5, 6, 7, 0.94));
+      padding: 1rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rack-column::before {
+      content: "";
+      position: absolute;
+      inset: auto -30px -36px auto;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.07), transparent 70%);
+    }
+
+    .rack-column strong {
+      font-size: 0.96rem;
+    }
+
+    .rack-column small {
+      color: var(--soft);
+      line-height: 1.6;
+    }
+
+    .signal-dot {
+      width: 0.62rem;
+      height: 0.62rem;
+      border-radius: 50%;
+      background: rgba(124, 255, 196, 0.92);
+      box-shadow: 0 0 0 6px rgba(124, 255, 196, 0.12);
+    }
+
+    .signal-line {
+      width: 2px;
+      flex: 1;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(124, 255, 196, 0.8), rgba(124, 255, 196, 0.06));
+      margin-left: 0.28rem;
+    }
+
+    .parse-panel,
+    .editor-panel,
+    .data-panel,
+    .recommend-panel,
+    .cta-card {
+      padding: 1.05rem;
+    }
+
+    .flow-layout {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .flow-rail {
+      display: grid;
+      grid-template-columns: 1.2fr 0.18fr 1fr;
+      gap: 0.8rem;
+      align-items: stretch;
+    }
+
+    .flow-column {
+      padding: 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      background: linear-gradient(180deg, rgba(12, 13, 14, 0.82), rgba(5, 6, 7, 0.92));
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .flow-column strong {
+      font-size: 0.94rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .flow-pill {
+      padding: 0.9rem 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      background: rgba(8, 9, 10, 0.82);
+    }
+
+    .flow-pill strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .flow-pill span {
+      display: block;
+      color: var(--soft);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .flow-arrow {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-arrow::before,
+    .flow-arrow::after {
+      content: "";
+      position: absolute;
+      background: linear-gradient(180deg, rgba(124, 255, 196, 0.08), rgba(124, 255, 196, 0.74), rgba(124, 255, 196, 0.08));
+    }
+
+    .flow-arrow::before {
+      width: 2px;
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .flow-arrow::after {
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid rgba(124, 255, 196, 0.72);
+      border-bottom: 2px solid rgba(124, 255, 196, 0.72);
+      transform: rotate(45deg);
+      background: transparent;
+      bottom: 1rem;
+    }
+
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 0.34fr 1fr;
+      gap: 0.95rem;
+    }
+
+    .editor-sidebar,
+    .editor-canvas {
+      padding: 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      background: linear-gradient(180deg, rgba(12, 13, 14, 0.84), rgba(5, 6, 7, 0.92));
+    }
+
+    .editor-tools {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.9rem;
+    }
+
+    .editor-tool,
+    .canvas-block,
+    .queue-item,
+    .quote-item {
+      padding: 0.88rem 0.95rem;
+      border-radius: 18px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      background: rgba(9, 10, 11, 0.82);
+    }
+
+    .editor-tool strong,
+    .canvas-block strong,
+    .queue-item strong,
+    .quote-item strong {
+      display: block;
+      font-size: 0.96rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .editor-tool span,
+    .canvas-block span,
+    .queue-item span,
+    .quote-item span {
+      color: var(--soft);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .canvas-grid {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 0.9rem;
+    }
+
+    .canvas-block--accent {
+      border-color: rgba(124, 255, 196, 0.16);
+      background:
+        linear-gradient(180deg, rgba(14, 16, 17, 0.92), rgba(8, 9, 10, 0.9));
+      box-shadow: inset 0 0 0 1px rgba(124, 255, 196, 0.05);
+    }
+
+    .canvas-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .metrics-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.95rem;
+    }
+
+    .metric-card {
+      padding: 1rem;
+      border-radius: 22px;
+    }
+
+    .metric-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .metric-main {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      margin-top: 0.8rem;
+      font-size: 2.5rem;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .metric-main small {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .metric-chart {
+      height: 88px;
+      margin-top: 1rem;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(12, 13, 14, 0.74), rgba(6, 7, 8, 0.88));
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+    }
+
+    .metric-chart::before,
+    .metric-chart::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 100%;
+      background-repeat: no-repeat;
+    }
+
+    .metric-chart::before {
+      background:
+        linear-gradient(180deg, rgba(124, 255, 196, 0), rgba(124, 255, 196, 0.08)),
+        linear-gradient(90deg, transparent 0, rgba(124, 255, 196, 0.1) 100%);
+      clip-path: polygon(0 100%, 0 68%, 18% 54%, 38% 61%, 56% 22%, 71% 42%, 100% 8%, 100% 100%);
+    }
+
+    .metric-chart::after {
+      background:
+        linear-gradient(90deg, rgba(124, 255, 196, 0.08) 0 0) 8% 72% / 14% 1px no-repeat,
+        linear-gradient(90deg, rgba(124, 255, 196, 0.08) 0 0) 28% 55% / 16% 1px no-repeat,
+        linear-gradient(90deg, rgba(124, 255, 196, 0.08) 0 0) 52% 28% / 18% 1px no-repeat,
+        linear-gradient(90deg, rgba(124, 255, 196, 0.08) 0 0) 72% 41% / 18% 1px no-repeat;
+    }
+
+    .metric-caption {
+      margin-top: 0.8rem;
+      color: var(--soft);
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+
+    .quote-stack {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .quote-card {
+      padding: 1rem;
+      border-radius: 22px;
+    }
+
+    .quote-role {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 0.9rem;
+    }
+
+    .quote-role::before {
+      content: "";
+      width: 0.56rem;
+      height: 0.56rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-2), var(--green));
+      box-shadow: 0 0 0 4px rgba(124, 255, 196, 0.12);
+    }
+
+    .quote-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.45;
+      margin-bottom: 0.55rem;
+    }
+
+    .quote-desc {
+      color: var(--soft);
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+
+    .quote-list {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+
+    .quote-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .quote-item em {
+      font-style: normal;
+      font-size: 0.76rem;
+      color: var(--soft);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .cta-shell {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .cta-card {
+      border-radius: 34px;
+      min-height: 70svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(124, 255, 196, 0.08), transparent 28%),
+        linear-gradient(180deg, rgba(10, 11, 12, 0.92), rgba(3, 4, 4, 0.98));
+    }
+
+    .cta-card::before,
+    .cta-card::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      pointer-events: none;
+    }
+
+    .cta-card::before {
+      width: min(88vw, 760px);
+      height: min(88vw, 760px);
+      border-radius: 50%;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      box-shadow:
+        0 0 0 34px rgba(124, 255, 196, 0.016),
+        0 0 0 96px rgba(124, 255, 196, 0.01);
+      opacity: calc(0.64 * var(--glow-strength));
+    }
+
+    .cta-card::after {
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 42%, rgba(124, 255, 196, 0.035) 50%, transparent 58%),
+        radial-gradient(circle at 50% 0%, rgba(67, 245, 162, 0.07), transparent 34%);
+      mix-blend-mode: screen;
+      animation: shimmer 11s linear infinite;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      text-align: center;
+      padding: clamp(2rem, 5vw, 4rem);
+    }
+
+    .cta-content h2 {
+      margin: 0;
+      font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+      font-size: clamp(3rem, 6vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      text-wrap: pretty;
+    }
+
+    .cta-content p {
+      margin: 1.25rem auto 0;
+      max-width: 54ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      line-height: 1.85;
+      text-wrap: pretty;
+    }
+
+    .cta-footer {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--soft);
+      font-size: 0.94rem;
+    }
+
+    .section-index {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 19;
+      display: grid;
+      gap: 0.72rem;
+    }
+
+    .section-index a {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(140, 255, 205, 0.32);
+      background: rgba(9, 23, 18, 0.78);
+      box-shadow: 0 0 0 8px rgba(124, 255, 196, 0);
+      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), background 220ms var(--ease);
+    }
+
+    .section-index a.is-active,
+    .section-index a:hover,
+    .section-index a:focus-visible {
+      transform: scale(1.12);
+      background: rgba(124, 255, 196, 0.92);
+      box-shadow: 0 0 0 8px rgba(124, 255, 196, 0.08), 0 0 24px rgba(124, 255, 196, 0.28);
+      outline: none;
+    }
+
+    .tweaks-toggle {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 21;
+      min-height: 50px;
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(140, 255, 205, 0.16);
+      background: rgba(8, 8, 9, 0.86);
+      color: var(--text);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      box-shadow: var(--shadow-glow);
+      backdrop-filter: blur(18px);
+      cursor: pointer;
+      transition: transform 220ms var(--ease), background 220ms var(--ease);
+    }
+
+    .tweaks-toggle:hover,
+    .tweaks-toggle:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(12, 12, 13, 0.94);
+      outline: none;
+    }
+
+    .tweaks-panel {
+      position: fixed;
+      right: 24px;
+      bottom: 86px;
+      z-index: 21;
+      width: min(320px, calc(100vw - 32px));
+      padding: 1rem;
+      border-radius: 24px;
+      border: 1px solid rgba(140, 255, 205, 0.14);
+      background: rgba(8, 8, 9, 0.9);
+      box-shadow: var(--shadow-glow);
+      backdrop-filter: blur(18px) saturate(130%);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition:
+        opacity 220ms var(--ease),
+        visibility 220ms var(--ease),
+        transform 220ms var(--ease);
+    }
+
+    .tweaks-panel.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .tweaks-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .tweaks-title {
+      font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .tweaks-grid {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .tweak-field {
+      padding: 0.9rem;
+      border-radius: 18px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      background: rgba(11, 11, 12, 0.82);
+    }
+
+    .tweak-field label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 0.62rem;
+    }
+
+    .tweak-field select {
+      width: 100%;
+      min-height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(140, 255, 205, 0.16);
+      background: rgba(7, 7, 8, 0.94);
+      color: var(--text);
+      padding: 0.65rem 0.85rem;
+      appearance: none;
+    }
+
+    .tweak-note {
+      margin-top: 0.6rem;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--soft);
+    }
+
+    .panel-content,
+    .panel-visual,
+    .hero-meta,
+    .feature-grid,
+    .cta-content {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 680ms var(--ease),
+        transform 680ms var(--ease);
+    }
+
+    .panel.is-visible .panel-content,
+    .panel.is-visible .panel-visual,
+    .panel.is-visible .hero-meta,
+    .panel.is-visible .feature-grid,
+    .panel.is-visible .cta-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .panel.is-visible .panel-visual {
+      transition-delay: 80ms;
+    }
+
+    .panel.is-visible .feature-grid,
+    .panel.is-visible .hero-meta {
+      transition-delay: 160ms;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 14% 20%, rgba(124, 255, 196, 0.07), transparent 22%),
+        radial-gradient(circle at 82% 16%, rgba(67, 245, 162, 0.05), transparent 24%),
+        linear-gradient(145deg, #000000 0%, #060606 42%, #010101 100%);
+    }
+
+    .hero::before {
+      background:
+        linear-gradient(120deg, transparent 38%, rgba(124, 255, 196, 0.03) 48%, transparent 58%),
+        radial-gradient(circle at 60% 35%, rgba(124, 255, 196, 0.04), transparent 18%);
+      filter: blur(4px);
+    }
+
+    .hero .panel-bg span:nth-child(1) {
+      inset: 6% auto auto 60%;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(140, 255, 205, 0.08);
+      box-shadow: 0 0 0 42px rgba(124, 255, 196, 0.018), 0 0 0 96px rgba(124, 255, 196, 0.008);
+      animation-duration: 18s;
+    }
+
+    .hero .panel-bg span:nth-child(2) {
+      inset: auto auto 12% -8%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(124, 255, 196, 0.1), transparent 70%);
+      filter: blur(40px);
+      animation-duration: 13s;
+    }
+
+    .hero .panel-bg span:nth-child(3) {
+      inset: auto 10% 18% auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.09), transparent 70%);
+      filter: blur(20px);
+      animation-duration: 10s;
+    }
+
+    .features {
+      background:
+        radial-gradient(circle at 18% 24%, rgba(67, 245, 162, 0.05), transparent 24%),
+        linear-gradient(160deg, #010101 0%, #050505 44%, #020202 100%);
+    }
+
+    .features::before {
+      background:
+        linear-gradient(180deg, transparent, rgba(124, 255, 196, 0.025) 40%, transparent),
+        repeating-linear-gradient(90deg, transparent 0 130px, rgba(124, 255, 196, 0.018) 130px 131px);
+      mask-image: linear-gradient(180deg, transparent, black 18%, black 82%, transparent);
+    }
+
+    .features .panel-bg span:nth-child(1) {
+      inset: 15% auto auto -4%;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.08), transparent 68%);
+      filter: blur(24px);
+    }
+
+    .features .panel-bg span:nth-child(2) {
+      inset: auto 5% 12% auto;
+      width: 340px;
+      height: 340px;
+      border: 1px solid rgba(124, 255, 196, 0.08);
+      box-shadow: 0 0 0 32px rgba(124, 255, 196, 0.014);
+      animation-duration: 17s;
+    }
+
+    .parse {
+      background:
+        radial-gradient(circle at 84% 18%, rgba(124, 255, 196, 0.05), transparent 24%),
+        linear-gradient(165deg, #010101 0%, #050505 48%, #020202 100%);
+    }
+
+    .parse::before {
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(124, 255, 196, 0.025) 50%, transparent 100%),
+        repeating-linear-gradient(0deg, transparent 0 140px, rgba(124, 255, 196, 0.016) 140px 141px);
+    }
+
+    .parse .panel-bg span:nth-child(1) {
+      inset: 10% auto auto 68%;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      box-shadow: 0 0 0 36px rgba(124, 255, 196, 0.012);
+      animation-duration: 16s;
+    }
+
+    .parse .panel-bg span:nth-child(2) {
+      inset: auto auto 8% 6%;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.07), transparent 70%);
+      filter: blur(26px);
+      animation-duration: 11s;
+    }
+
+    .editor {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(124, 255, 196, 0.05), transparent 24%),
+        linear-gradient(150deg, #010101 0%, #050505 50%, #020202 100%);
+    }
+
+    .editor::before {
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(124, 255, 196, 0.022) 50%, transparent 100%),
+        repeating-linear-gradient(90deg, transparent 0 110px, rgba(124, 255, 196, 0.016) 110px 111px);
+    }
+
+    .editor .panel-bg span:nth-child(1) {
+      inset: auto auto 15% -5%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(124, 255, 196, 0.08), transparent 70%);
+      filter: blur(34px);
+      animation-duration: 12s;
+    }
+
+    .editor .panel-bg span:nth-child(2) {
+      inset: 12% 8% auto auto;
+      width: 210px;
+      height: 210px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      box-shadow: 0 0 0 24px rgba(124, 255, 196, 0.012);
+      animation-duration: 15s;
+    }
+
+    .data {
+      background:
+        radial-gradient(circle at 78% 16%, rgba(124, 255, 196, 0.06), transparent 26%),
+        linear-gradient(155deg, #000000 0%, #050505 48%, #010101 100%);
+    }
+
+    .data::before {
+      background:
+        linear-gradient(180deg, transparent, rgba(124, 255, 196, 0.02), transparent),
+        radial-gradient(circle at 50% 50%, rgba(124, 255, 196, 0.035), transparent 32%);
+    }
+
+    .data .panel-bg span:nth-child(1) {
+      inset: auto 10% 14% auto;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      box-shadow: 0 0 0 26px rgba(124, 255, 196, 0.01), 0 0 0 74px rgba(124, 255, 196, 0.006);
+      animation-duration: 18s;
+    }
+
+    .data .panel-bg span:nth-child(2) {
+      inset: 14% auto auto 0;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(67, 245, 162, 0.06), transparent 70%);
+      filter: blur(28px);
+      animation-duration: 13s;
+    }
+
+    .recommend {
+      background:
+        radial-gradient(circle at 14% 22%, rgba(124, 255, 196, 0.04), transparent 24%),
+        linear-gradient(160deg, #010101 0%, #050505 50%, #020202 100%);
+    }
+
+    .recommend::before {
+      background:
+        linear-gradient(110deg, transparent 30%, rgba(124, 255, 196, 0.02) 50%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent 0 120px, rgba(124, 255, 196, 0.015) 120px 121px);
+      mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+    }
+
+    .recommend .panel-bg span:nth-child(1) {
+      inset: 10% auto auto 72%;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(124, 255, 196, 0.07), transparent 70%);
+      filter: blur(20px);
+      animation-duration: 13s;
+    }
+
+    .recommend .panel-bg span:nth-child(2) {
+      inset: auto auto 14% -2%;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(140, 255, 205, 0.07);
+      box-shadow: 0 0 0 34px rgba(124, 255, 196, 0.01);
+      animation-duration: 16s;
+    }
+
+    .cta {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(124, 255, 196, 0.06), transparent 34%),
+        linear-gradient(180deg, #000000 0%, #040404 52%, #010101 100%);
+      align-items: stretch;
+    }
+
+    .footer-meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding: 0 0.25rem 0.4rem;
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      transition: color 220ms var(--ease);
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    @container (max-width: 760px) {
+      .hero-meta,
+      .feature-grid,
+      .metrics-layout,
+      .console-layout,
+      .flow-rail,
+      .editor-layout,
+      .canvas-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        gap: 0.9rem;
+      }
+    }
+
+    @media (max-width: 1120px) {
+      .topbar-nav {
+        display: none;
+      }
+
+      .panel-shell,
+      .panel--reverse .panel-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .panel--reverse .panel-content,
+      .panel--reverse .panel-visual {
+        order: initial;
+      }
+
+      .panel-visual {
+        min-height: 420px;
+      }
+
+      .hero-copy,
+      .panel-content p {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .section-index {
+        display: none;
+      }
+
+      .hero-console {
+        transform: none;
+        animation: none;
+      }
+
+      .floating-card--top {
+        top: auto;
+        right: 12px;
+        bottom: -12px;
+      }
+
+      .floating-card--bottom {
+        left: 12px;
+        bottom: auto;
+        top: -18px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --container: min(100%, calc(100% - 28px));
+      }
+
+      .topbar {
+        top: 12px;
+        width: calc(100% - 20px);
+        padding: 0.8rem 0.85rem 0.8rem 1rem;
+      }
+
+      .brand-sub {
+        letter-spacing: 0.12em;
+      }
+
+      .button-topbar {
+        display: none;
+      }
+
+      .panel {
+        padding-top: 7.2rem;
+      }
+
+      .panel-content h1 {
+        max-width: 100%;
+      }
+
+      .eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+      }
+
+      .hero-meta,
+      .feature-grid,
+      .rack-columns,
+      .metrics-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-rail,
+      .editor-layout,
+      .console-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta .meta-card,
+      .feature-card,
+      .quote-card,
+      .metric-card {
+        min-height: auto;
+      }
+
+      .tweaks-toggle {
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .tweaks-panel {
+        right: 14px;
+        bottom: 76px;
+        width: calc(100vw - 28px);
+      }
+
+      .footer-meta,
+      .cta-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-footer,
+      .cta-content {
+        text-align: left;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(0, -12px, 0);
+      }
+    }
+
+    @keyframes drift {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(0, -12px, 0) scale(1.03);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-30%);
+      }
+      100% {
+        transform: translateX(30%);
+      }
+    }
+
+    @keyframes heroTilt {
+      0%, 100% {
+        transform: perspective(1600px) rotateY(-10deg) rotateX(6deg);
+      }
+      50% {
+        transform: perspective(1600px) rotateY(-5deg) rotateX(4deg) translateY(-6px);
+      }
+    }
+  </style>
+</head>
+<body data-glow="medium" data-motion="on" data-density="relaxed">
+  <header class="topbar">
+    <a class="brand" href="#hero" aria-label="返回首页">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <span class="brand-name">科技楼智慧洁卫运营管理系统</span>
+        <span class="brand-sub">Smart Sanitation Operations OS</span>
+      </span>
+    </a>
+    <nav class="topbar-nav" aria-label="页面导航">
+      <a href="#features">核心功能</a>
+      <a href="#parse">智能解析</a>
+      <a href="#editor">编辑器升级</a>
+      <a href="#data">数字展示</a>
+      <a href="#recommend">用户推荐</a>
+    </nav>
+    <a class="button button-primary button-topbar" href="#cta">预约演示</a>
+  </header>
+
+  <nav class="section-index" aria-label="章节导航">
+    <a href="#hero" data-nav="hero" aria-label="Hero"></a>
+    <a href="#features" data-nav="features" aria-label="核心功能"></a>
+    <a href="#parse" data-nav="parse" aria-label="智能解析"></a>
+    <a href="#editor" data-nav="editor" aria-label="编辑器升级"></a>
+    <a href="#data" data-nav="data" aria-label="数字展示"></a>
+    <a href="#recommend" data-nav="recommend" aria-label="用户推荐"></a>
+    <a href="#cta" data-nav="cta" aria-label="CTA"></a>
+  </nav>
+
+  <main>
+    <section class="panel hero" id="hero" data-section="hero">
+      <div class="panel-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-shell">
+        <div class="panel-content">
+          <div class="eyebrow">Building Service Intelligence</div>
+          <h1>让科技楼里的每一间洁卫空间，进入可预测运营</h1>
+          <p class="hero-copy">
+            科技楼智慧洁卫运营管理系统，把客流感知、耗材余量、异味环境、巡检工单和楼宇排班整合成一套实时中台。
+            你不再等异常被投诉后才响应，而是在高峰到来前，把人、物、设备和标准动作提前排好。
+          </p>
+          <div class="button-row" style="margin-top: 1.9rem;">
+            <a class="button button-primary" href="#cta">预约方案演示</a>
+            <a class="button button-secondary" href="#features">查看能力矩阵</a>
+          </div>
+          <div class="content-note">
+            <span>楼层级实时态势</span>
+            <span>异常自动派单</span>
+            <span>服务质量闭环</span>
+          </div>
+          <div class="hero-meta">
+            <article class="meta-card">
+              <div class="meta-label">Realtime Sense</div>
+              <div class="meta-title">把占用、客流、环境和补给余量放进同一张态势图</div>
+              <div class="meta-desc">让值班运营看到的是原因链路，而不是零散告警。</div>
+            </article>
+            <article class="meta-card">
+              <div class="meta-label">Predictive Dispatch</div>
+              <div class="meta-title">识别高峰前兆，提前安排清洁、巡检和补给节奏</div>
+              <div class="meta-desc">现场动作从被动应答变成有顺序的精准计划。</div>
+            </article>
+            <article class="meta-card">
+              <div class="meta-label">Unified Governance</div>
+              <div class="meta-title">把物业、保洁和设备协同进同一条执行链路</div>
+              <div class="meta-desc">责任归属、过程追踪和复盘视角全部在线留痕。</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel-visual">
+          <div class="glass-panel hero-console">
+            <div class="panel-header">
+              <div class="panel-title">
+                <div class="panel-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="panel-heading">Operations Pulse</div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">A Tower</span>
+                <span class="chip">Peak Window</span>
+              </div>
+            </div>
+            <div class="console-body">
+              <div class="console-layout">
+                <div class="zone-map">
+                  <div class="chip-row">
+                    <span class="chip">21F</span>
+                    <span class="chip">Meeting Rush</span>
+                    <span class="chip">Live Dispatch</span>
+                  </div>
+                  <div class="zone-grid">
+                    <div class="zone-cell">
+                      <div class="zone-label">东侧洁卫</div>
+                      <div class="zone-value">A1 <small>高峰响应</small></div>
+                    </div>
+                    <div class="zone-cell">
+                      <div class="zone-label">西侧洁卫</div>
+                      <div class="zone-value">B2 <small>补给排队</small></div>
+                    </div>
+                    <div class="zone-cell">
+                      <div class="zone-label">母婴室</div>
+                      <div class="zone-value">S4 <small>环境稳定</small></div>
+                    </div>
+                    <div class="zone-cell">
+                      <div class="zone-label">纸品余量</div>
+                      <div class="zone-value">12 <small>分钟阈值</small></div>
+                    </div>
+                    <div class="zone-cell">
+                      <div class="zone-label">巡检状态</div>
+                      <div class="zone-value">On <small>正在闭环</small></div>
+                    </div>
+                    <div class="zone-cell">
+                      <div class="zone-label">体验波动</div>
+                      <div class="zone-value">Low <small>可控区间</small></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="activity-rail">
+                  <div class="rail-card">
+                    <strong>峰值预判</strong>
+                    <div class="mini-bars" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                  <div class="rail-card">
+                    <strong>当前处理建议</strong>
+                    <div class="meta-desc">优先补给西侧纸品与洗手液，同时将高峰巡检前置到下一轮通勤前。</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card--top">
+            <strong>跨系统接入</strong>
+            <p>传感器、设备、工单与排班信息进入同一运行图层。</p>
+          </div>
+          <div class="floating-card floating-card--bottom">
+            <strong>策略先于问题</strong>
+            <p>系统先给建议动作，再决定谁在什么时候进场处理。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel features panel--reverse" id="features" data-section="features">
+      <div class="panel-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-shell">
+        <div class="panel-content">
+          <div class="eyebrow">Core Functions</div>
+          <h2>把洁卫运营拆成四条可执行链路</h2>
+          <p>
+            它不是再做一个保洁系统，而是把楼宇现场、设备状态与人的动作连成闭环。
+            运营团队看到的是一整套服务能力：感知、判断、调度、归档，每一段都能被衡量，也都能被优化。
+          </p>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <strong>实时感知</strong>
+              <p>占用、客流、异味、温湿度、耗材余量汇入同一楼层视图，问题不再躲在不同系统之间。</p>
+            </article>
+            <article class="feature-card">
+              <strong>调度中台</strong>
+              <p>异常自动转工单，按楼层、班次、服务优先级智能派发，减少临时喊人和重复指令。</p>
+            </article>
+            <article class="feature-card">
+              <strong>品质追踪</strong>
+              <p>任务完成即回传，巡检证据、时效记录与SOP执行痕迹同步沉淀，便于抽查与复盘。</p>
+            </article>
+            <article class="feature-card">
+              <strong>资产协同</strong>
+              <p>把设备保养、耗材补给与外包服务商并入一条链路，减少断供、延误和重复报修。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel-visual">
+          <div class="glass-panel rack-panel feature-visual">
+            <div class="panel-header">
+              <div class="panel-title">
+                <div class="panel-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="panel-heading">Capability Matrix</div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">4 Chains</span>
+              </div>
+            </div>
+            <div class="rack-columns">
+              <div class="rack-column">
+                <div class="signal-dot" aria-hidden="true"></div>
+                <strong>感知入口</strong>
+                <small>客流、占用、环境和耗材状态同步进入楼层视图。</small>
+                <div class="signal-line" aria-hidden="true"></div>
+              </div>
+              <div class="rack-column">
+                <div class="signal-dot" aria-hidden="true"></div>
+                <strong>运营判断</strong>
+                <small>系统识别高峰、低库存与设备波动，形成清晰优先级。</small>
+                <div class="signal-line" aria-hidden="true"></div>
+              </div>
+              <div class="rack-column">
+                <div class="signal-dot" aria-hidden="true"></div>
+                <strong>现场执行</strong>
+                <small>派单、巡检、补给、确认动作在同一链路里闭环推进。</small>
+                <div class="signal-line" aria-hidden="true"></div>
+              </div>
+              <div class="rack-column">
+                <div class="signal-dot" aria-hidden="true"></div>
+                <strong>复盘优化</strong>
+                <small>每一次响应都变成下次策略调整的输入，而不是一次性处理。</small>
+                <div class="signal-line" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel parse" id="parse" data-section="parse">
+      <div class="panel-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-shell">
+        <div class="panel-content">
+          <div class="eyebrow">Intelligent Parsing</div>
+          <h2>系统不只是看见状态，而是读懂它为什么发生</h2>
+          <p>
+            智能解析引擎把传感器事件、巡检记录和历史时段叠加，自动判断是高峰客流、耗材即将见底，还是设备异常造成的体验波动。
+            你看到的不再是一排排告警，而是能直接进入执行的原因与建议动作。
+          </p>
+          <div class="content-note">
+            <span>碎片事件转成可执行原因</span>
+            <span>自动给出优先级与处置建议</span>
+            <span>峰值结束后保留热区复盘依据</span>
+          </div>
+        </div>
+
+        <div class="panel-visual">
+          <div class="glass-panel parse-panel parse-visual">
+            <div class="panel-header">
+              <div class="panel-title">
+                <div class="panel-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="panel-heading">Signal Parsing</div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Reason Engine</span>
+              </div>
+            </div>
+            <div class="flow-layout">
+              <div class="flow-rail">
+                <div class="flow-column">
+                  <strong>输入事件</strong>
+                  <div class="flow-pill">
+                    <strong>客流突然抬升</strong>
+                    <span>会议集中结束，15 分钟内进入高峰。</span>
+                  </div>
+                  <div class="flow-pill">
+                    <strong>纸品余量下降</strong>
+                    <span>低于当前楼层设定阈值，补给窗口缩短。</span>
+                  </div>
+                  <div class="flow-pill">
+                    <strong>异味短时波动</strong>
+                    <span>与排风设备状态叠加后出现体验风险。</span>
+                  </div>
+                </div>
+                <div class="flow-arrow" aria-hidden="true"></div>
+                <div class="flow-column">
+                  <strong>解析结果</strong>
+                  <div class="flow-pill">
+                    <strong>判定：高峰导致补给压力</strong>
+                    <span>不是单点报修，而是高峰流量与补给节奏错位。</span>
+                  </div>
+                  <div class="flow-pill">
+                    <strong>建议：前置清洁与补给</strong>
+                    <span>先处理西侧洁卫，再安排下一轮巡检切入。</span>
+                  </div>
+                  <div class="flow-pill">
+                    <strong>归档：进入楼层热区模型</strong>
+                    <span>下次遇到同样时段，系统会自动提前触发。</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel editor panel--reverse" id="editor" data-section="editor">
+      <div class="panel-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-shell">
+        <div class="panel-content">
+          <div class="eyebrow">Editor Upgrade</div>
+          <h2>让 SOP、巡检表和看板，不再依赖定制开发</h2>
+          <p>
+            升级后的运营编辑器支持按楼宇、楼层、场景拖拽配置。
+            策略、流程、表单和展示模块都能在一个画布里完成，运营团队自己就能持续优化，而不是每次都等排期。
+          </p>
+          <div class="content-note">
+            <span>拖拽式流程编排</span>
+            <span>多角色表单模板</span>
+            <span>版本追踪与一键回滚</span>
+          </div>
+        </div>
+
+        <div class="panel-visual">
+          <div class="glass-panel editor-panel editor-visual">
+            <div class="panel-header">
+              <div class="panel-title">
+                <div class="panel-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="panel-heading">Operation Editor</div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">No-code Config</span>
+              </div>
+            </div>
+            <div class="editor-layout">
+              <div class="editor-sidebar">
+                <div class="panel-heading">组件库</div>
+                <div class="editor-tools">
+                  <div class="editor-tool">
+                    <strong>策略节点</strong>
+                    <span>高峰触发、阈值判断、通知升级</span>
+                  </div>
+                  <div class="editor-tool">
+                    <strong>表单模板</strong>
+                    <span>巡检、补给、异常确认、设备保养</span>
+                  </div>
+                  <div class="editor-tool">
+                    <strong>展示模块</strong>
+                    <span>楼层热区、工单队列、趋势看板</span>
+                  </div>
+                </div>
+              </div>
+              <div class="editor-canvas">
+                <div class="panel-heading">楼宇场景画布</div>
+                <div class="canvas-grid">
+                  <div class="canvas-block canvas-block--accent">
+                    <strong>高峰前 20 分钟</strong>
+                    <span>自动检查 A 塔 21F 与 22F 补给余量，若低于阈值则创建前置任务。</span>
+                  </div>
+                  <div class="canvas-row">
+                    <div class="canvas-block">
+                      <strong>巡检表联动</strong>
+                      <span>保洁进场后自动弹出对应楼层巡检项。</span>
+                    </div>
+                    <div class="canvas-block">
+                      <strong>体验告警</strong>
+                      <span>若环境波动持续，则升级给物业值班负责人。</span>
+                    </div>
+                  </div>
+                  <div class="canvas-block">
+                    <strong>大屏同步</strong>
+                    <span>策略发布后，数字总览与值班界面同步更新，无需单独维护。</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel data" id="data" data-section="data">
+      <div class="panel-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-shell">
+        <div class="panel-content">
+          <div class="eyebrow">Digital View</div>
+          <h2>同一张数字总览，统一物业、运营与保洁班组的语言</h2>
+          <p>
+            数字展示不是为了堆满大屏，而是为了让任何一个值班角色，都能在一个视图里迅速定位到楼层、原因和责任动作。
+            这张总览可以用于日常值班，也可以用于周会复盘和总部级服务管理。
+          </p>
+          <div class="content-note">
+            <span>楼宇级实时看板</span>
+            <span>热区与风险排序</span>
+            <span>演示模式数据流</span>
+          </div>
+        </div>
+
+        <div class="panel-visual">
+          <div class="glass-panel data-panel data-visual">
+            <div class="panel-header">
+              <div class="panel-title">
+                <div class="panel-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="panel-heading">Demo Data Stream</div>
+              </div>
+              <div class="chip-row">
+                <span class="chip">Ops Dashboard</span>
+                <span class="chip">Live Demo</span>
+              </div>
+            </div>
+            <div class="metrics-layout">
+              <article class="metric-card">
+                <div class="metric-topline">
+                  <span>即时客流波动</span>
+                  <span>Trend</span>
+                </div>
+                <div class="metric-main"><span data-counter="18">0</span><small>层同步</small></div>
+                <div class="metric-chart" aria-hidden="true"></div>
+                <div class="metric-caption">系统将客流节奏映射到楼层热区，帮助前置安排补给与巡检。</div>
+              </article>
+              <article class="metric-card">
+                <div class="metric-topline">
+                  <span>风险排序视图</span>
+                  <span>Queue</span>
+                </div>
+                <div class="metric-main"><span data-counter="6">0</span><small>类原因</small></div>
+                <div class="metric-chart" aria-hidden="true"></div>
+                <div class="metric-caption">把耗材、环境、设备和现场反馈压缩成清晰的原因队列，而不是散点告警。</div>
+              </article>
+              <article class="metric-card">
+                <div class="metric-topline">
+                  <span>策略闭环状态</span>
+                  <span>SLA</span>
+                </div>
+                <div class="metric-main"><span data-counter="24">0</span><small>h 节律</small></div>
+                <div class="metric-chart" aria-hidden="true"></div>
+                <div class="metric-caption">值班节律、班次安排和异常升级路径全部在同一面板里联动变化。</div>
+              </article>
+              <article class="metric-card">
+                <div class="metric-topline">
+                  <span>跨角色协同</span>
+                  <span>Flow</span>
+                </div>
+                <div class="metric-main"><span data-counter="3">0</span><small>角色视角</small></div>
+                <div class="metric-chart" aria-hidden="true"></div>
+                <div class="metric-caption">物业、运营、保洁主管使用同一张总览，但看到各自需要推进的动作。</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel recommend panel--reverse" id="recommend" data-section="recommend">
+      <div class="panel-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-shell">
+        <div class="panel-content">
+          <div class="eyebrow">User Recommendation</div>
+          <h2>这套系统最容易被三类角色推进上线</h2>
+          <p>
+            同一套产品，不同岗位看到的是不同价值：有人要标准化，有人要效率，有人要确定性。
+            所以用户推荐不是一句口号，而是不同角色都能找到自己推进它的理由。
+          </p>
+          <div class="content-note">
+            <span>楼宇运营负责人</span>
+            <span>物业管理团队</span>
+            <span>保洁班组主管</span>
+          </div>
+        </div>
+
+        <div class="panel-visual">
+          <div class="quote-stack recommend-visual">
+            <article class="quote-card">
+              <div class="quote-role">Operations Lead</div>
+              <div class="quote-title">“我需要的不是更多提醒，而是整个科技楼洁卫体验始终可控。”</div>
+              <div class="quote-desc">这类角色最看重高峰预判、服务口碑和跨楼层协同。他们需要一张总览，能把体验波动变成可管理的运营动作。</div>
+              <div class="quote-list">
+                <div class="quote-item">
+                  <span>重点关注：高峰前置策略</span>
+                  <em>运营视角</em>
+                </div>
+                <div class="quote-item">
+                  <span>重点关注：服务体验稳定</span>
+                  <em>品牌视角</em>
+                </div>
+              </div>
+            </article>
+            <article class="quote-card">
+              <div class="quote-role">Property Manager</div>
+              <div class="quote-title">“我要用一张图管理服务商、设备和工单，而不是在群里追着问。”</div>
+              <div class="quote-desc">物业经理会看重过程留痕、责任归属和跨团队协同。系统越能减少解释成本，他们越容易推进正式上线。</div>
+              <div class="quote-list">
+                <div class="quote-item">
+                  <span>重点关注：责任闭环</span>
+                  <em>管理视角</em>
+                </div>
+                <div class="quote-item">
+                  <span>重点关注：现场可追踪</span>
+                  <em>执行视角</em>
+                </div>
+              </div>
+            </article>
+            <article class="quote-card">
+              <div class="quote-role">Cleaning Supervisor</div>
+              <div class="quote-title">“我需要清晰班次、补给提醒和现场反馈，别再靠临时通知反复返工。”</div>
+              <div class="quote-desc">保洁主管会直接感受到系统对排班、补给、巡检和复核的帮助。流程一旦更清楚，返工和误判就会明显减少。</div>
+              <div class="quote-list">
+                <div class="quote-item">
+                  <span>重点关注：班次与补给节奏</span>
+                  <em>班组视角</em>
+                </div>
+                <div class="quote-item">
+                  <span>重点关注：巡检反馈效率</span>
+                  <em>现场视角</em>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel cta" id="cta" data-section="cta">
+      <div class="cta-shell">
+        <div class="cta-card">
+          <div class="cta-content">
+            <div class="eyebrow" style="margin-left: auto; margin-right: auto;">Ready To Launch</div>
+            <h2>把洁卫运营从“看不见”，变成可增长的服务能力</h2>
+            <p>
+              预约一次产品演示，看看你的科技楼如何在不增加现场复杂度的前提下，
+              建立实时感知、精准计划和统一执行。让每一层楼都拥有更稳定、更可复盘的洁卫体验。
+            </p>
+            <div class="button-row" style="margin-top: 2rem; justify-content: center;">
+              <a class="button button-primary" href="#hero">发起演示预约</a>
+              <a class="button button-secondary" href="#features">回看能力结构</a>
+            </div>
+            <div class="cta-footer">
+              <span>适配科技园、总部办公楼、研发中心、联合办公场景</span>
+              <span>支持楼宇级部署与总部级运营总览</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>Landing concept for 科技楼智慧洁卫运营管理系统</span>
+          <div class="footer-links">
+            <a href="#hero">首页</a>
+            <a href="#parse">智能解析</a>
+            <a href="#editor">编辑器升级</a>
+            <a href="#cta">预约演示</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="tweaks-toggle" type="button" aria-expanded="false" aria-controls="tweaks-panel">
+    Tweaks
+  </button>
+  <aside class="tweaks-panel" id="tweaks-panel" aria-label="Tweaks panel">
+    <div class="tweaks-header">
+      <div class="tweaks-title">Tweaks</div>
+      <span class="chip">Live Controls</span>
+    </div>
+    <div class="tweaks-grid">
+      <div class="tweak-field">
+        <label for="glow-select">氛围强度</label>
+        <select id="glow-select">
+          <option value="medium" selected>Balanced</option>
+          <option value="low">Low Glow</option>
+          <option value="high">High Glow</option>
+        </select>
+      </div>
+      <div class="tweak-field">
+        <label for="motion-select">背景运动</label>
+        <select id="motion-select">
+          <option value="on" selected>On</option>
+          <option value="off">Off</option>
+        </select>
+      </div>
+      <div class="tweak-field">
+        <label for="density-select">页面密度</label>
+        <select id="density-select">
+          <option value="relaxed" selected>Relaxed</option>
+          <option value="compact">Compact</option>
+        </select>
+        <div class="tweak-note">默认是高端留白版，切到紧凑模式后，页面信息密度更偏工具型产品展示。</div>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    (() => {
+      const sections = [...document.querySelectorAll("[data-section]")];
+      const topNavLinks = [...document.querySelectorAll(".topbar-nav a")];
+      const dotLinks = [...document.querySelectorAll(".section-index a")];
+      const navTargets = new Map(
+        [...topNavLinks, ...dotLinks].map((link) => [
+          link.getAttribute("href").slice(1),
+          document.querySelectorAll(`[href="#${link.getAttribute("href").slice(1)}"]`)
+        ])
+      );
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              const id = entry.target.id;
+              navTargets.forEach((links, key) => {
+                links.forEach((link) => link.classList.toggle("is-active", key === id));
+              });
+            }
+          });
+        },
+        { threshold: 0.42 }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
+
+      const counterObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            const element = entry.target;
+            const endValue = Number(element.dataset.counter || 0);
+            const duration = 1200;
+            const startTime = performance.now();
+
+            const tick = (now) => {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              element.textContent = Math.round(endValue * eased);
+              if (progress < 1) {
+                requestAnimationFrame(tick);
+              } else {
+                element.textContent = endValue;
+              }
+            };
+
+            requestAnimationFrame(tick);
+            observer.unobserve(element);
+          });
+        },
+        { threshold: 0.55 }
+      );
+
+      document.querySelectorAll("[data-counter]").forEach((counter) => counterObserver.observe(counter));
+
+      const body = document.body;
+      const tweaksToggle = document.querySelector(".tweaks-toggle");
+      const tweaksPanel = document.querySelector(".tweaks-panel");
+      const glowSelect = document.querySelector("#glow-select");
+      const motionSelect = document.querySelector("#motion-select");
+      const densitySelect = document.querySelector("#density-select");
+
+      tweaksToggle.addEventListener("click", () => {
+        const isOpen = tweaksPanel.classList.toggle("is-open");
+        tweaksToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      glowSelect.addEventListener("change", (event) => {
+        body.dataset.glow = event.target.value;
+      });
+
+      motionSelect.addEventListener("change", (event) => {
+        body.dataset.motion = event.target.value;
+      });
+
+      densitySelect.addEventListener("change", (event) => {
+        body.dataset.density = event.target.value;
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          tweaksPanel.classList.remove("is-open");
+          tweaksToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
